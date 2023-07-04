@@ -3,13 +3,15 @@ import Login from "./Login";
 
 export default function Registration() {
 
+  // let flag = false;
     let userRgister = ()=>{
-        console.log("HEllo");
-        <Login/>
+      // flag = true;
+      <Login/>
     };
 
   return (
     <div className="container mt-5">
+      <div>{console.log("Helo")}</div>
         <div className="text-center"><h1>Please Register Yourself</h1></div>
       <form>
         <div className="mb-3">
@@ -62,7 +64,7 @@ export default function Registration() {
             Check me out
           </label>
         </div>
-        <button type="submit" onClick={userRgister}className="btn btn-primary">
+        <button type="submit" onClick={userRgister} className="btn btn-primary">
           Submit
         </button>
       </form>
