@@ -1,17 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
+import RegistrationCall from "../service/RegistrationCall";
+import { Route, Router, Routes } from "react-router";
 import Login from "./Login";
+// import Login from "./Login";
 
 export default function Registration() {
 
-  // let flag = false;
-    let userRgister = ()=>{
-      // flag = true;
-      <Login/>
-    };
+    // const [id, setId] = useState(0);
+    const [firstname, setFname] = useState("");
+    const [lastname, setLname] = useState("");
+    const [emailid, setEmailID] = useState("");
+    const [password, setPassword] = useState("");
+    const [checkout, setCheckout] = useState(false);
+
+
+const saveEmpoyee = (event)=>{
+  // event.preventDefault();
+  // const emp = {firstname , lastname , emailid , password , checkout};
+  const emp = {
+    id:0,
+    firstname:firstname,
+    lastname: lastname,
+    emailid : emailid,
+    password : password,
+    checkout : checkout
+  }
+  // console.log(emp);
+  RegistrationCall.doRegistration(emp).then((response)=>{
+    console.log(response);
+    if(response.data === "successefully"){
+      setFname("");
+      setLname("");
+      setEmailID("");
+      setPassword("");
+      setCheckout(false);
+      <Router>
+        <Routes>
+        <Route element={<Login/>}/>
+        </Routes>
+      </Router>
+    }else{
+      alert("Please Check the terms and Conditions");
+    }
+  }).catch(error=>{
+    console.log(error);
+    
+  })
+}
 
   return (
     <div className="container mt-5">
-      <div>{console.log("Helo")}</div>
+      {/* <div>{console.log("Helo")}</div> */}
         <div className="text-center"><h1>Please Register Yourself</h1></div>
       <form>
         <div className="mb-3">
@@ -22,6 +61,8 @@ export default function Registration() {
             type="text"
             className="form-control"
             id="fname"
+            value={firstname}
+            onChange={e => setFname(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -32,6 +73,8 @@ export default function Registration() {
             type="text"
             className="form-control"
             id="lname"
+            value={lastname}
+            onChange={e => setLname(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -43,6 +86,8 @@ export default function Registration() {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            value={emailid}
+            onChange={e => setEmailID(e.target.value)}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -56,15 +101,17 @@ export default function Registration() {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
         <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+          <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={e => setCheckout(e.target.checked)} value={checkout} />
           <label className="form-check-label" htmlFor="exampleCheck1">
             Check me out
           </label>
         </div>
-        <button type="submit" onClick={userRgister} className="btn btn-primary">
+        <button className="btn btn-primary" type="button" onClick={saveEmpoyee}>
           Submit
         </button>
       </form>
