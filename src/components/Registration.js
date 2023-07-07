@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import RegistrationCall from "../service/RegistrationCall";
-import { Route, Router, Routes } from "react-router";
-import Login from "./Login";
-// import Login from "./Login";
+// import { Route, Router, Routes } from "react-router";
 
 export default function Registration() {
 
@@ -12,11 +11,9 @@ export default function Registration() {
     const [emailid, setEmailID] = useState("");
     const [password, setPassword] = useState("");
     const [checkout, setCheckout] = useState(false);
-
+    const navigate = useNavigate();
 
 const saveEmpoyee = (event)=>{
-  // event.preventDefault();
-  // const emp = {firstname , lastname , emailid , password , checkout};
   const emp = {
     id:0,
     firstname:firstname,
@@ -25,7 +22,6 @@ const saveEmpoyee = (event)=>{
     password : password,
     checkout : checkout
   }
-  // console.log(emp);
   RegistrationCall.doRegistration(emp).then((response)=>{
     console.log(response);
     if(response.data === "successefully"){
@@ -34,11 +30,7 @@ const saveEmpoyee = (event)=>{
       setEmailID("");
       setPassword("");
       setCheckout(false);
-      <Router>
-        <Routes>
-        <Route element={<Login/>}/>
-        </Routes>
-      </Router>
+      navigate('/login');      
     }else{
       alert("Please Check the terms and Conditions");
     }

@@ -1,12 +1,24 @@
-import './App.css';
-// import Navbar from './components/Navbar';
-import Registration from './components/Registration';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import "./App.css";
+import Navbar from './components/Navbar';
+import Login from "./components/Login";
+import Registration from "./components/Registration";
+import ShowBook from "./components/ShowBook";
 
 function App() {
   return (
     <>
-    <Registration/>
-    {/* <Navbar/> */}
+      <Router>
+        {/* <Navbar /> */}
+        <ShowBook/>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/nav" element={<Navbar />} />
+        </Routes>
+      </Router>
+      {/* <Registration/> */}
+      {/* <Login/> */}
     </>
   );
 }
