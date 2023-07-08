@@ -10,11 +10,13 @@ function App() {
     <>
       <Router>
         {/* <Navbar /> */}
-        <ShowBook/>
+        {/* <ShowBook/> */}
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/nav" element={<Navbar />} />
+          <Route path="/showbook" element={<ShowBook />} />
         </Routes>
       </Router>
       {/* <Registration/> */}

@@ -6,16 +6,13 @@ export default function ShowBook() {
   const [books, setBooks] = useState([]);
 
   const navigate = useNavigate();
-
+  navigate("/nav");
   useEffect(() => {
-    console.log("Hello");
     RegistrationCall.showbook()
       .then((response) => {
-        console.log(response);
         if (response.data !== undefined || response.data !== "undefined") {
+          
           setBooks(response.data);
-
-          // navigate("/nav");
         } else {
           // console.log("Error");
           // document.getElementById("msg").innerHTML = "Invalid Login! Please try again!";
@@ -29,8 +26,7 @@ export default function ShowBook() {
 
   return (
     <div>
-      <h2>HTML Table</h2>
-
+      <h2>All Books</h2>
       <table>
         <thead>
           <tr>
@@ -41,7 +37,7 @@ export default function ShowBook() {
         </thead>
         <tbody>
           {books.map((book) =>
-            <tr>
+            <tr key={book.id}>
               <td>{book.title}</td>
               <td>{book.author}</td>
               <td>{book.cellno}</td>

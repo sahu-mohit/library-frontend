@@ -1,5 +1,5 @@
 import React, {useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RegistrationCall from "../service/RegistrationCall";
 // import { Route, Router, Routes } from "react-router";
 
@@ -106,6 +106,11 @@ const saveEmpoyee = (event)=>{
         <button className="btn btn-primary" type="button" onClick={saveEmpoyee}>
           Submit
         </button>
+        <Link to="/login">
+        <button className="btn btn-primary" type="button">
+          Login
+        </button>
+        </Link>
       </form>
     </div>
   );
