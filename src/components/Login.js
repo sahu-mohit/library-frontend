@@ -1,5 +1,5 @@
 import React, {useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RegistrationCall from "../service/RegistrationCall";
 import "../style/Login.css"
 
@@ -33,9 +33,9 @@ export default function Login() {
 
   return (
     // console.log("Login page");
-    <div className="login">
+    <div className="login" style={{position:'relative'}}>
       <h2 className="active"> sign in </h2>
-      <h2 className="nonactive"> sign up </h2>
+      <Link to="/registration"><h2 className="nonactive"> sign up </h2></Link>
       <form>
         
         <input type="text" className="text" onChange={e => setEmailID(e.target.value)} value={emailid}/>

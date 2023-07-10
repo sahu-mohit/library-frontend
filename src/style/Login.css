@@ -28,7 +28,14 @@ form {
 }
 
 .nonactive {
+    position: absolute;
+  /* top: -159px; */
+  bottom: 121px;
   color: rgba(255, 255, 255, 0.2);
+}
+
+.nonactive:hover{
+  color: white;
 }
 
 h2 {
