@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import RegistrationCall from "../service/RegistrationCall";
 import "../style/showbook.css";
+import Navbar from "./Navbar";
+
 export default function ShowBook() {
   const [books, setBooks] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Hello");
@@ -28,7 +28,9 @@ export default function ShowBook() {
   }, []);
 
   return (
+    
     <div>
+      <Navbar/>
       <h2>HTML Table</h2>
 
       <table>

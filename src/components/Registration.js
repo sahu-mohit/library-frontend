@@ -1,7 +1,6 @@
 import React, {useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import RegistrationCall from "../service/RegistrationCall";
-// import { Route, Router, Routes } from "react-router";
 
 export default function Registration() {
 
@@ -42,7 +41,6 @@ const saveEmpoyee = (event)=>{
 
   return (
     <div className="container mt-5">
-      {/* <div>{console.log("Helo")}</div> */}
         <div className="text-center"><h1>Please Register Yourself</h1></div>
       <form>
         <div className="mb-3">

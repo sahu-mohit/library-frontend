@@ -1,29 +1,29 @@
-import React, {useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "../style/Login.css";
+import { Link, useNavigate} from "react-router-dom";
 import RegistrationCall from "../service/RegistrationCall";
-import "../style/Login.css"
 
-export default function Login() {
-  const [emailid, setEmailID] = useState("");
+const Login = () => {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checkout, setCheckout] = useState(false);
   const navigate = useNavigate();
 
-  const logInEmployee = () => {
+  const handleLogin = () => {
+    console.log("Login clicked");
+
     const emp = {
-      emailid: emailid,
+      emailid: username,
       password: password,
-      checkout: checkout,
     };
     RegistrationCall.doLogin(emp)
       .then((response) => {
         console.log(response);
         if (response.data === "success") {
-          navigate("/registration");
+          navigate("/allbooks");
         } else {
           console.log("Error");
-          document.getElementById("msg").innerHTML = "Invalid Login! Please try again!";
-          // alert("Invalid Login! Please try again!");
+          document.getElementById("msg").innerHTML =
+            "Invalid Login! Please try again!";
         }
       })
       .catch((error) => {
@@ -32,28 +32,35 @@ export default function Login() {
   };
 
   return (
-    // console.log("Login page");
-    <div className="login" style={{position:'relative'}}>
-      <h2 className="active"> sign in </h2>
-      <Link to="/registration"><h2 className="nonactive"> sign up </h2></Link>
+    <div className="login-container">
+      <h2>Login</h2>
+      <p className="text-center" style={{color:'red'}} id="msg"></p>
       <form>
-        
-        <input type="text" className="text" onChange={e => setEmailID(e.target.value)} value={emailid}/>
-        <span>Email Id</span>
-        <br />
-        <p id="msg"></p>
-        <br />
-        <input type="password" className="text" onChange={e => setPassword(e.target.value)} value={password}/>
-        <span>Password</span>
-        <br />
-        <input type="checkbox" id="checkbox-1-1" className="custom-checkbox" onChange={e => setCheckout(e.target.value)} value={checkout} />
-        <label htmlFor="checkbox-1-1">Keep me Signed in</label>
-        <button className="signin" type = "button" onClick={logInEmployee}>
-          Sign In
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="button" onClick={handleLogin}>
+          Login
         </button>
-        <hr />
-        <a href="/">Forgot Password?</a>
+        <Link to="/registration">
+          <p className="text-center">I don't have account</p>
+        </Link>
       </form>
     </div>
   );
-}
+};
+
+export default Login;

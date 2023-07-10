@@ -10,9 +10,11 @@ function App() {
     <>
       <Router>
         {/* <Navbar /> */}
-        <ShowBook/>
+        {/* <ShowBook/> */}
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/allbooks" element={<ShowBook />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/nav" element={<Navbar />} />
         </Routes>
